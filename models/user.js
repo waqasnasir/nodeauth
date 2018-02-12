@@ -1,6 +1,6 @@
 var mongoose=require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-mongoose.connect('mongodb://localhost/nodeauth')
+mongoose.connect('mongodb://root:ELWmHMv9LbxW@35.224.121.151:27017/admin')
 var db=mongoose.connection;
 
 
@@ -35,7 +35,7 @@ module.exports.comparePasswords=function (password,hash,callback) {
 
 		callback(null,isMatch);
 
-	})	
+	})
 }
 
 
@@ -45,20 +45,19 @@ module.exports.createUser=function (newUser,callback) {
 				if (err) return callback(err);
 				newUser.password=hash;
 				newUser.save(callback);
-				
+
 			});
-	
+
 }
 module.exports.getUserByEmail=function (username,callback) {
 	// body...
 	var query={email:username};
 	User.findOne(query,callback);
-	
+
 }
 module.exports.getUserById=function (id,callback) {
 	// body...
-	
-	User.findById(id,callback);
-	
-}
 
+	User.findById(id,callback);
+
+}
